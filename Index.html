@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Little Surprise 💖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #fff0f6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #ff4f81;
+      text-align: center;
+    }
+
+    .screen {
+      width: 90%;
+      max-width: 500px;
+      padding: 30px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(255, 80, 130, 0.2);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin: 15px 0;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .small-title {
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #ff7da3;
+    }
+
+    .gift {
+      border: none;
+      background: none;
+      font-size: 100px;
+      cursor: pointer;
+      animation: bounce 1.4s infinite;
+      margin: 20px;
+    }
+
+    .gift:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button.choice {
+      border: none;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #yesButton {
+      background: #ff4f81;
+      color: white;
+    }
+
+    #noButton {
+      background: #ddd;
+      color: #555;
+      position: relative;
+    }
+
+    #musicButton {
+      margin-top: 20px;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: #ffe0eb;
+      color: #ff4f81;
+      cursor: pointer;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 25px;
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .celebrate {
+      font-size: 50px;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      font-size: 25px;
+      animation: fall 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SURPRISE SCREEN -->
+  <div id="surpriseScreen" class="screen">
+
+    <div class="small-title">
+      A LITTLE SURPRISE FOR
+    </div>
+
+    <h1>Ankita 💖</h1>
+
+    <p>
+      I have something special for you...
+    </p>
+
+    <button id="openGift" class="gift">
+      🎁
+    </button>
+
+    <p>
+      Tap the gift 🎁
+    </p>
+
+  </div>
+
+
+  <!-- PROPOSAL SCREEN -->
+  <div id="proposalScreen" class="screen hidden">
+
+    <div class="small-title">
+      ONE IMPORTANT QUESTION
+    </div>
+
+    <h1>Ankita 💕</h1>
+
+    <p>
+      You make my days a little brighter
+      and my world a little happier.
+    </p>
+
+    <h2>Will you say yes? 💖</h2>
+
+    <div class="buttons">
+
+      <button id="yesButton" class="choice">
+        Yes ❤️
+      </button>
+
+      <button id="noButton" class="choice">
+        No 😭
+      </button>
+
+    </div>
+
+    <button id="musicButton">
+      🎵 Music
+    </button>
+
+  </div>
+
+
+  <!-- CELEBRATION SCREEN -->
+  <div id="celebrationScreen" class="screen hidden">
+
+    <div class="celebrate">
+      💖🎉💖
+    </div>
+
+    <h1>YAY! ❤️</h1>
+
+    <p>
+      You just made this moment really special! 🥰
+    </p>
+
+    <div class="celebrate">
+      🎉 💕 🎉
+    </div>
+
+  </div>
+
+
+  <!-- MUSIC -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <script>
+
+    // Get elements
+    const surpriseScreen =
+      document.getElementById("surpriseScreen");
+
+    const proposalScreen =
+      document.getElementById("proposalScreen");
+
+    const celebrationScreen =
+      document.getElementById("celebrationScreen");
+
+    const openGift =
+      document.getElementById("openGift");
+
+    const yesButton =
+      document.getElementById("yesButton");
+
+    const noButton =
+      document.getElementById("noButton");
+
+    const musicButton =
+      document.getElementById("musicButton");
+
+    const music =
+      document.getElementById("music");
+
+
+    // 🎁 OPEN GIFT
+    openGift.addEventListener("click", function() {
+
+      surpriseScreen.classList.add("hidden");
+
+      proposalScreen.classList.remove("hidden");
+
+      music.play().catch(function() {
+        console.log("Music could not autoplay.");
+      });
+
+    });
+
+
+    // ❤️ YES BUTTON
+    yesButton.addEventListener("click", function() {
+
+      proposalScreen.classList.add("hidden");
+
+      celebrationScreen.classList.remove("hidden");
+
+      createConfetti();
+
+    });
+
+
+    // 😭 NO BUTTON MOVES
+    function moveNoButton() {
+
+      const maxX =
+        window.innerWidth - noButton.offsetWidth - 20;
+
+      const maxY =
+        window.innerHeight - noButton.offsetHeight - 20;
+
+      const x =
+        Math.max(10, Math.random() * maxX);
+
+      const y =
+        Math.max(10, Math.random() * maxY);
+
+      noButton.style.position = "fixed";
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+
+    }
+
+
+    noButton.addEventListener("mouseenter", moveNoButton);
+
+    noButton.addEventListener("touchstart", function(event) {
+      event.preventDefault();
+      moveNoButton();
+    });
+
+    noButton.addEventListener("click", moveNoButton);
+
+
+    // 🎵 MUSIC BUTTON
+    musicButton.addEventListener("click", function() {
+
+      if (music.paused) {
+
+        music.play();
+
+        musicButton.innerHTML = "🔊 Music ON";
+
+      } else {
+
+        music.pause();
+
+        musicButton.innerHTML = "🔇 Music OFF";
+
+      }
+
+    });
+
+
+    // ❤️ FLOATING HEARTS
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+
+      heart.innerHTML = "❤️";
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(function() {
+        heart.remove();
+      }, 8000);
+
+    }
+
+    setInterval(createHeart, 800);
+
+
+    // 🎉 CONFETTI
+    function createConfetti() {
+
+      const emojis = ["🎉", "❤️", "💕", "✨", "💖"];
+
+      for (let i = 0; i < 50; i++) {
+
+        const confetti =
+          document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.innerHTML =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+        confetti.style.animationDelay =
+          Math.random() * 1.5 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(function() {
+          confetti.remove();
+        }, 4500);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+        </html>
