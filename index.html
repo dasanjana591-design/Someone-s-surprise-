@@ -1,405 +1,579 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>A Little Surprise 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
+<title>Someone's Surprise 🤣</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #ffc2d9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    width: 90%;
+    max-width: 420px;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 5;
+}
+
+.screen {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    color: #ff4f81;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #ff4f81;
+}
+
+p {
+    color: #555;
+    font-size: 17px;
+}
+
+.gift {
+    font-size: 80px;
+    cursor: pointer;
+    margin: 20px 0;
+    animation: bounce 1.2s infinite;
+    user-select: none;
+}
+
+@keyframes bounce {
+
+    0%, 100% {
+        transform: translateY(0);
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffd6e7, #fff0f6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: #ff4f81;
-      text-align: center;
+    50% {
+        transform: translateY(-12px);
     }
 
-    .screen {
-      width: 90%;
-      max-width: 500px;
-      padding: 30px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 25px;
-      box-shadow: 0 10px 40px rgba(255, 80, 130, 0.2);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    min-height: 55px;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4f81;
+    color: white;
+}
+
+.no {
+    background: #eeeeee;
+    color: #444;
+}
+
+#noButton {
+    transition: 0.2s;
+}
+
+.funnyEmoji {
+    position: fixed;
+    bottom: -50px;
+    font-size: 30px;
+    pointer-events: none;
+    animation: funnyFloat 5s linear forwards;
+    z-index: 1;
+}
+
+@keyframes funnyFloat {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
     }
 
-    .hidden {
-      display: none;
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+.celebration {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.bigText {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff4f81;
+}
+
+.confetti {
+    position: fixed;
+    top: -30px;
+    font-size: 25px;
+    animation: confettiFall 3s linear forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes confettiFall {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+
+}
+
+#noButton.teleport {
+    position: fixed;
+    z-index: 20;
+}
+
+@media (max-width: 500px) {
+
+    .card {
+        padding: 25px 15px;
     }
 
     h1 {
-      font-size: 38px;
-      margin: 15px 0;
-    }
-
-    p {
-      font-size: 18px;
-      color: #555;
-    }
-
-    .small-title {
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: #ff7da3;
+        font-size: 25px;
     }
 
     .gift {
-      border: none;
-      background: none;
-      font-size: 100px;
-      cursor: pointer;
-      animation: bounce 1.4s infinite;
-      margin: 20px;
+        font-size: 70px;
     }
 
-    .gift:hover {
-      transform: scale(1.1);
+    button {
+        padding: 13px 20px;
     }
 
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
+}
 
-      50% {
-        transform: translateY(-15px);
-      }
-    }
-
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    button.choice {
-      border: none;
-      padding: 13px 28px;
-      border-radius: 30px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    #yesButton {
-      background: #ff4f81;
-      color: white;
-    }
-
-    #noButton {
-      background: #ddd;
-      color: #555;
-      position: relative;
-    }
-
-    #musicButton {
-      margin-top: 20px;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 20px;
-      background: #ffe0eb;
-      color: #ff4f81;
-      cursor: pointer;
-    }
-
-    .heart {
-      position: fixed;
-      bottom: -30px;
-      font-size: 25px;
-      animation: floatUp 6s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
-
-    .celebrate {
-      font-size: 50px;
-    }
-
-    .confetti {
-      position: fixed;
-      top: -20px;
-      font-size: 25px;
-      animation: fall 3s linear forwards;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- SURPRISE SCREEN -->
-  <div id="surpriseScreen" class="screen">
+<div class="card">
 
-    <div class="small-title">
-      A LITTLE SURPRISE FOR
-    </div>
+    <!-- SURPRISE SCREEN -->
 
-    <h1>Ankita 💖</h1>
+    <div id="surpriseScreen" class="screen">
 
-    <p>
-      I have something special for you...
-    </p>
+        <h2>A LITTLE SURPRISE FOR</h2>
 
-    <button id="openGift" class="gift">
-      🎁
-    </button>
+        <h1>Ankita 🤣</h1>
 
-    <p>
-      Tap the gift 🎁
-    </p>
+        <p>
+            I have something special for you...
+        </p>
 
-  </div>
+        <div class="gift" id="gift">
+            🎁
+        </div>
 
-
-  <!-- PROPOSAL SCREEN -->
-  <div id="proposalScreen" class="screen hidden">
-
-    <div class="small-title">
-      ONE IMPORTANT QUESTION
-    </div>
-
-    <h1>Ankita 💕</h1>
-
-    <p>
-      You make my days a little brighter
-      and my world a little happier.
-    </p>
-
-    <h2>Will you say yes? 💖</h2>
-
-    <div class="buttons">
-
-      <button id="yesButton" class="choice">
-        Yes ❤️
-      </button>
-
-      <button id="noButton" class="choice">
-        No 😭
-      </button>
+        <p>
+            Tap the gift 🎁
+        </p>
 
     </div>
 
-    <button id="musicButton">
-      🎵 Music
-    </button>
 
-  </div>
+    <!-- QUESTION SCREEN -->
 
+    <div id="proposalScreen" class="screen hidden">
 
-  <!-- CELEBRATION SCREEN -->
-  <div id="celebrationScreen" class="screen hidden">
+        <div style="font-size:60px;">
+            🐶
+        </div>
 
-    <div class="celebrate">
-      💖🎉💖
+        <h1>
+            VERY IMPORTANT QUESTION
+        </h1>
+
+        <h2 id="question">
+            Are you kukur? 🐶
+        </h2>
+
+        <p id="subText">
+            Be honest 😂
+        </p>
+
+        <div class="buttons">
+
+            <button class="yes" id="yesButton">
+                Yes 😂
+            </button>
+
+            <button class="no" id="noButton">
+                No 😭
+            </button>
+
+        </div>
+
     </div>
 
-    <h1>YAY! ❤️</h1>
 
-    <p>
-      You just made this moment really special! 🥰
-    </p>
+    <!-- CELEBRATION SCREEN -->
 
-    <div class="celebrate">
-      🎉 💕 🎉
+    <div id="celebrationScreen" class="screen hidden">
+
+        <div class="celebration">
+            🐶🤣🐶
+        </div>
+
+        <div class="bigText">
+            I knew it now bark 😂
+        </div>
+
+        <h2>
+            🐕 WOOF WOOF! 🐕
+        </h2>
+
+        <p>
+            Officially confirmed 🤣
+        </p>
+
+        <div style="font-size:40px;">
+            🤣 🐶 🔪 🐶 🤣
+        </div>
+
     </div>
 
-  </div>
+</div>
 
 
-  <!-- MUSIC -->
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<!-- BARK SOUND -->
+
+<audio id="barkSound" src="bark.mp3" preload="auto"></audio>
 
 
-  <script>
+<script>
 
-    // Get elements
-    const surpriseScreen =
-      document.getElementById("surpriseScreen");
+const gift = document.getElementById("gift");
 
-    const proposalScreen =
-      document.getElementById("proposalScreen");
+const surpriseScreen =
+    document.getElementById("surpriseScreen");
 
-    const celebrationScreen =
-      document.getElementById("celebrationScreen");
+const proposalScreen =
+    document.getElementById("proposalScreen");
 
-    const openGift =
-      document.getElementById("openGift");
+const celebrationScreen =
+    document.getElementById("celebrationScreen");
 
-    const yesButton =
-      document.getElementById("yesButton");
+const yesButton =
+    document.getElementById("yesButton");
 
-    const noButton =
-      document.getElementById("noButton");
+const noButton =
+    document.getElementById("noButton");
 
-    const musicButton =
-      document.getElementById("musicButton");
+const question =
+    document.getElementById("question");
 
-    const music =
-      document.getElementById("music");
+const subText =
+    document.getElementById("subText");
+
+const barkSound =
+    document.getElementById("barkSound");
 
 
-    // 🎁 OPEN GIFT
-    openGift.addEventListener("click", function() {
+let noCount = 0;
+let teleporting = false;
 
-      surpriseScreen.classList.add("hidden");
 
-      proposalScreen.classList.remove("hidden");
+// OPEN GIFT
 
-      music.play().catch(function() {
-        console.log("Music could not autoplay.");
-      });
+gift.addEventListener("click", function() {
 
+    surpriseScreen.classList.add("hidden");
+
+    proposalScreen.classList.remove("hidden");
+
+});
+
+
+// YES BUTTON
+
+yesButton.addEventListener("click", function() {
+
+    // Play bark
+    barkSound.currentTime = 0;
+
+    barkSound.play().catch(function(error) {
+        console.log("Sound could not play:", error);
     });
 
 
-    // ❤️ YES BUTTON
-    yesButton.addEventListener("click", function() {
+    proposalScreen.classList.add("hidden");
 
-      proposalScreen.classList.add("hidden");
+    celebrationScreen.classList.remove("hidden");
 
-      celebrationScreen.classList.remove("hidden");
+    createConfetti();
 
-      createConfetti();
-
-    });
+});
 
 
-    // 😭 NO BUTTON MOVES
-    function moveNoButton() {
+// NO BUTTON
 
-      const maxX =
-        window.innerWidth - noButton.offsetWidth - 20;
+noButton.addEventListener("click", function() {
 
-      const maxY =
-        window.innerHeight - noButton.offsetHeight - 20;
+    if (teleporting) {
 
-      const x =
+        moveNoButton();
+
+        return;
+
+    }
+
+
+    noCount++;
+
+
+    if (noCount === 1) {
+
+        question.innerText =
+            "Are you sure? 🤨";
+
+        subText.innerText =
+            "Think carefully 😂";
+
+    }
+
+
+    else if (noCount === 2) {
+
+        question.innerText =
+            "Really sure? 🧐";
+
+        subText.innerText =
+            "Last chance 😂";
+
+    }
+
+
+    else if (noCount >= 3) {
+
+        question.innerText =
+            "Okay... catch the No 😂";
+
+        subText.innerText =
+            "It's running away! 🏃💨";
+
+        startTeleport();
+
+    }
+
+});
+
+
+// START TELEPORTING NO BUTTON
+
+function startTeleport() {
+
+    teleporting = true;
+
+    noButton.classList.add("teleport");
+
+    moveNoButton();
+
+    noButton.addEventListener(
+        "mouseenter",
+        moveNoButton
+    );
+
+    noButton.addEventListener(
+        "touchstart",
+        function(event) {
+
+            event.preventDefault();
+
+            moveNoButton();
+
+        }
+    );
+
+}
+
+
+// MOVE NO BUTTON
+
+function moveNoButton() {
+
+    const buttonWidth =
+        noButton.offsetWidth;
+
+    const buttonHeight =
+        noButton.offsetHeight;
+
+
+    const maxX =
+        window.innerWidth - buttonWidth - 10;
+
+    const maxY =
+        window.innerHeight - buttonHeight - 10;
+
+
+    const randomX =
         Math.max(10, Math.random() * maxX);
 
-      const y =
+    const randomY =
         Math.max(10, Math.random() * maxY);
 
-      noButton.style.position = "fixed";
-      noButton.style.left = x + "px";
-      noButton.style.top = y + "px";
 
-    }
+    noButton.style.left =
+        randomX + "px";
 
+    noButton.style.top =
+        randomY + "px";
 
-    noButton.addEventListener("mouseenter", moveNoButton);
-
-    noButton.addEventListener("touchstart", function(event) {
-      event.preventDefault();
-      moveNoButton();
-    });
-
-    noButton.addEventListener("click", moveNoButton);
+}
 
 
-    // 🎵 MUSIC BUTTON
-    musicButton.addEventListener("click", function() {
+// FUNNY FLOATING EMOJIS
 
-      if (music.paused) {
-
-        music.play();
-
-        musicButton.innerHTML = "🔊 Music ON";
-
-      } else {
-
-        music.pause();
-
-        musicButton.innerHTML = "🔇 Music OFF";
-
-      }
-
-    });
+const funnyEmojis = [
+    "🐶",
+    "🤣",
+    "🔪",
+    "🐕",
+    "😂"
+];
 
 
-    // ❤️ FLOATING HEARTS
-    function createHeart() {
+function createFunnyEmoji() {
 
-      const heart = document.createElement("div");
+    const emoji =
+        document.createElement("div");
 
-      heart.className = "heart";
+    emoji.className =
+        "funnyEmoji";
 
-      heart.innerHTML = "❤️";
+    emoji.innerText =
+        funnyEmojis[
+            Math.floor(
+                Math.random() *
+                funnyEmojis.length
+            )
+        ];
 
-      heart.style.left =
+
+    emoji.style.left =
         Math.random() * 100 + "vw";
 
-      heart.style.animationDuration =
-        (4 + Math.random() * 4) + "s";
 
-      document.body.appendChild(heart);
-
-      setTimeout(function() {
-        heart.remove();
-      }, 8000);
-
-    }
-
-    setInterval(createHeart, 800);
+    emoji.style.animationDuration =
+        (3 + Math.random() * 3) + "s";
 
 
-    // 🎉 CONFETTI
-    function createConfetti() {
+    document.body.appendChild(emoji);
 
-      const emojis = ["🎉", "❤️", "💕", "✨", "💖"];
 
-      for (let i = 0; i < 50; i++) {
+    setTimeout(function() {
+
+        emoji.remove();
+
+    }, 6000);
+
+}
+
+
+setInterval(createFunnyEmoji, 700);
+
+
+// CONFETTI
+
+function createConfetti() {
+
+    const confettiEmojis = [
+        "🎉",
+        "🤣",
+        "🐶",
+        "😂",
+        "✨",
+        "🐕"
+    ];
+
+
+    for (let i = 0; i < 40; i++) {
 
         const confetti =
-          document.createElement("div");
+            document.createElement("div");
 
-        confetti.className = "confetti";
+        confetti.className =
+            "confetti";
 
-        confetti.innerHTML =
-          emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.innerText =
+            confettiEmojis[
+                Math.floor(
+                    Math.random() *
+                    confettiEmojis.length
+                )
+            ];
+
 
         confetti.style.left =
-          Math.random() * 100 + "vw";
+            Math.random() * 100 + "vw";
+
 
         confetti.style.animationDelay =
-          Math.random() * 1.5 + "s";
+            Math.random() * 1.5 + "s";
+
 
         document.body.appendChild(confetti);
 
-        setTimeout(function() {
-          confetti.remove();
-        }, 4500);
 
-      }
+        setTimeout(function() {
+
+            confetti.remove();
+
+        }, 4500);
 
     }
 
-  </script>
+}
+
+</script>
 
 </body>
-        </html>
+          </html>
