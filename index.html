@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Someone's Surprise 🤣</title>
 
@@ -16,32 +19,50 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffd6e7, #ffc2d9);
+
+    background: linear-gradient(
+        135deg,
+        #ffd6e7,
+        #ffc2d9
+    );
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow: hidden;
 }
+
+
+/* MAIN CARD */
 
 .card {
     width: 90%;
     max-width: 420px;
+
     background: white;
+
     padding: 30px 20px;
+
     border-radius: 25px;
+
     text-align: center;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.15);
+
     position: relative;
+
     z-index: 5;
 }
 
-.screen {
-    display: block;
-}
 
 .hidden {
     display: none;
 }
+
+
+/* TEXT */
 
 h1 {
     color: #ff4f81;
@@ -57,11 +78,18 @@ p {
     font-size: 17px;
 }
 
+
+/* GIFT */
+
 .gift {
     font-size: 80px;
+
     cursor: pointer;
+
     margin: 20px 0;
+
     animation: bounce 1.2s infinite;
+
     user-select: none;
 }
 
@@ -77,98 +105,201 @@ p {
 
 }
 
+
+/* BUTTONS */
+
 .buttons {
     display: flex;
+
     justify-content: center;
+
     gap: 15px;
+
     margin-top: 25px;
+
     min-height: 55px;
 }
 
+
 button {
     border: none;
+
     padding: 14px 25px;
+
     border-radius: 30px;
+
     font-size: 17px;
+
     font-weight: bold;
+
     cursor: pointer;
 }
+
 
 .yes {
     background: #ff4f81;
     color: white;
 }
 
+
 .no {
     background: #eeeeee;
     color: #444;
 }
 
-#noButton {
-    transition: 0.2s;
-}
+
+/* FLOATING EMOJIS */
 
 .funnyEmoji {
+
     position: fixed;
-    bottom: -50px;
+
+    bottom: -60px;
+
     font-size: 30px;
+
     pointer-events: none;
-    animation: funnyFloat 5s linear forwards;
-    z-index: 1;
+
+    z-index: 2;
+
+    animation:
+        slowFloat
+        12s linear forwards;
 }
 
-@keyframes funnyFloat {
+
+/* FLOATING TEXT */
+
+.textEmoji {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    color: #ff4f81;
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,0,0,0.12);
+}
+
+
+/* SLOW FLOAT */
+
+@keyframes slowFloat {
 
     0% {
-        transform: translateY(0) rotate(0deg);
+
+        transform:
+            translate(-50%, 0);
+
+        opacity: 0;
+    }
+
+
+    10% {
+
         opacity: 1;
     }
 
+
+    50% {
+
+        transform:
+            translate(-50%, -50vh);
+
+        opacity: 1;
+    }
+
+
     100% {
-        transform: translateY(-110vh) rotate(360deg);
+
+        transform:
+            translate(-50%, -115vh);
+
         opacity: 0;
     }
 
 }
 
+
+/* TELEPORTING NO */
+
+#noButton.teleport {
+
+    position: fixed;
+
+    z-index: 20;
+}
+
+
+/* CELEBRATION */
+
 .celebration {
+
     font-size: 45px;
+
     margin-bottom: 10px;
 }
 
+
 .bigText {
+
     font-size: 26px;
+
     font-weight: bold;
+
     color: #ff4f81;
 }
 
+
+/* CONFETTI */
+
 .confetti {
+
     position: fixed;
+
     top: -30px;
+
     font-size: 25px;
-    animation: confettiFall 3s linear forwards;
+
+    animation:
+        confettiFall
+        3s linear forwards;
+
     pointer-events: none;
+
     z-index: 10;
 }
+
 
 @keyframes confettiFall {
 
     0% {
-        transform: translateY(0) rotate(0deg);
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
         opacity: 1;
     }
 
+
     100% {
-        transform: translateY(110vh) rotate(720deg);
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
         opacity: 0;
     }
 
 }
 
-#noButton.teleport {
-    position: fixed;
-    z-index: 20;
-}
+
+/* MOBILE */
 
 @media (max-width: 500px) {
 
@@ -188,30 +319,53 @@ button {
         padding: 13px 20px;
     }
 
+    .textEmoji {
+        font-size: 17px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- MAIN CARD -->
+
 <div class="card">
+
 
     <!-- SURPRISE SCREEN -->
 
-    <div id="surpriseScreen" class="screen">
+    <div
+        id="surpriseScreen"
+    >
 
-        <h2>A LITTLE SURPRISE FOR</h2>
+        <h2>
+            A LITTLE SURPRISE FOR
+        </h2>
 
-        <h1>Ankita 🤣</h1>
+
+        <h1>
+            Ankita 🤣
+        </h1>
+
 
         <p>
             I have something special for you...
         </p>
 
-        <div class="gift" id="gift">
+
+        <div
+            class="gift"
+            id="gift"
+        >
             🎁
         </div>
+
 
         <p>
             Tap the gift 🎁
@@ -220,33 +374,48 @@ button {
     </div>
 
 
+
     <!-- QUESTION SCREEN -->
 
-    <div id="proposalScreen" class="screen hidden">
+    <div
+        id="proposalScreen"
+        class="hidden"
+    >
 
         <div style="font-size:60px;">
             🐶
         </div>
 
+
         <h1>
             VERY IMPORTANT QUESTION
         </h1>
+
 
         <h2 id="question">
             Are you kukur? 🐶
         </h2>
 
+
         <p id="subText">
             Be honest 😂
         </p>
 
+
         <div class="buttons">
 
-            <button class="yes" id="yesButton">
+            <button
+                class="yes"
+                id="yesButton"
+            >
                 Yes 😂
             </button>
 
-            <button class="no" id="noButton">
+
+            <button
+                class="no"
+                id="noButton"
+            >
                 No 😭
             </button>
 
@@ -255,25 +424,33 @@ button {
     </div>
 
 
+
     <!-- CELEBRATION SCREEN -->
 
-    <div id="celebrationScreen" class="screen hidden">
+    <div
+        id="celebrationScreen"
+        class="hidden"
+    >
 
         <div class="celebration">
             🐶🤣🐶
         </div>
 
+
         <div class="bigText">
             I knew it now bark 😂
         </div>
+
 
         <h2>
             🐕 WOOF WOOF! 🐕
         </h2>
 
+
         <p>
             Officially confirmed 🤣
         </p>
+
 
         <div style="font-size:40px;">
             🤣 🐶 🔪 🐶 🤣
@@ -284,143 +461,234 @@ button {
 </div>
 
 
+
 <!-- BARK SOUND -->
 
-<audio id="barkSound" src="bark.mp3" preload="auto"></audio>
+<audio
+    id="barkSound"
+    src="bark.mp3"
+    preload="auto">
+</audio>
+
 
 
 <script>
 
-const gift = document.getElementById("gift");
+
+/* GET ELEMENTS */
+
+const gift =
+    document.getElementById("gift");
+
 
 const surpriseScreen =
-    document.getElementById("surpriseScreen");
+    document.getElementById(
+        "surpriseScreen"
+    );
+
 
 const proposalScreen =
-    document.getElementById("proposalScreen");
+    document.getElementById(
+        "proposalScreen"
+    );
+
 
 const celebrationScreen =
-    document.getElementById("celebrationScreen");
+    document.getElementById(
+        "celebrationScreen"
+    );
+
 
 const yesButton =
-    document.getElementById("yesButton");
+    document.getElementById(
+        "yesButton"
+    );
+
 
 const noButton =
-    document.getElementById("noButton");
+    document.getElementById(
+        "noButton"
+    );
+
 
 const question =
-    document.getElementById("question");
+    document.getElementById(
+        "question"
+    );
+
 
 const subText =
-    document.getElementById("subText");
+    document.getElementById(
+        "subText"
+    );
+
 
 const barkSound =
-    document.getElementById("barkSound");
+    document.getElementById(
+        "barkSound"
+    );
 
+
+
+/* VARIABLES */
 
 let noCount = 0;
+
 let teleporting = false;
 
 
-// OPEN GIFT
 
-gift.addEventListener("click", function() {
+/* OPEN GIFT */
 
-    surpriseScreen.classList.add("hidden");
+gift.addEventListener(
+    "click",
+    function() {
 
-    proposalScreen.classList.remove("hidden");
-
-});
-
-
-// YES BUTTON
-
-yesButton.addEventListener("click", function() {
-
-    // Play bark
-    barkSound.currentTime = 0;
-
-    barkSound.play().catch(function(error) {
-        console.log("Sound could not play:", error);
-    });
+        surpriseScreen
+            .classList
+            .add("hidden");
 
 
-    proposalScreen.classList.add("hidden");
-
-    celebrationScreen.classList.remove("hidden");
-
-    createConfetti();
-
-});
-
-
-// NO BUTTON
-
-noButton.addEventListener("click", function() {
-
-    if (teleporting) {
-
-        moveNoButton();
-
-        return;
+        proposalScreen
+            .classList
+            .remove("hidden");
 
     }
+);
 
 
-    noCount++;
+
+/* YES BUTTON */
+
+yesButton.addEventListener(
+    "click",
+    function() {
+
+        /* BARK */
+
+        barkSound.currentTime = 0;
+
+        barkSound
+            .play()
+            .catch(
+                function(error) {
+
+                    console.log(
+                        "Bark could not play:",
+                        error
+                    );
+
+                }
+            );
 
 
-    if (noCount === 1) {
+        /* CELEBRATION */
 
-        question.innerText =
-            "Are you sure? 🤨";
+        proposalScreen
+            .classList
+            .add("hidden");
 
-        subText.innerText =
-            "Think carefully 😂";
+
+        celebrationScreen
+            .classList
+            .remove("hidden");
+
+
+        createConfetti();
 
     }
+);
 
 
-    else if (noCount === 2) {
 
-        question.innerText =
-            "Really sure? 🧐";
+/* NO BUTTON */
 
-        subText.innerText =
-            "Last chance 😂";
+noButton.addEventListener(
+    "click",
+    function() {
+
+
+        if (teleporting) {
+
+            moveNoButton();
+
+            return;
+
+        }
+
+
+        noCount++;
+
+
+        /* FIRST NO */
+
+        if (noCount === 1) {
+
+            question.innerText =
+                "Are you sure? 🤨";
+
+
+            subText.innerText =
+                "Think carefully 😂";
+
+        }
+
+
+        /* SECOND NO */
+
+        else if (noCount === 2) {
+
+            question.innerText =
+                "Really sure? 🧐";
+
+
+            subText.innerText =
+                "Last chance 😂";
+
+        }
+
+
+        /* THIRD NO */
+
+        else if (noCount >= 3) {
+
+            question.innerText =
+                "Okay... catch the No 😂";
+
+
+            subText.innerText =
+                "It's running away! 🏃💨";
+
+
+            startTeleport();
+
+        }
 
     }
+);
 
 
-    else if (noCount >= 3) {
 
-        question.innerText =
-            "Okay... catch the No 😂";
-
-        subText.innerText =
-            "It's running away! 🏃💨";
-
-        startTeleport();
-
-    }
-
-});
-
-
-// START TELEPORTING NO BUTTON
+/* START TELEPORT */
 
 function startTeleport() {
 
     teleporting = true;
 
-    noButton.classList.add("teleport");
+
+    noButton
+        .classList
+        .add("teleport");
+
 
     moveNoButton();
+
 
     noButton.addEventListener(
         "mouseenter",
         moveNoButton
     );
+
 
     noButton.addEventListener(
         "touchstart",
@@ -436,33 +704,48 @@ function startTeleport() {
 }
 
 
-// MOVE NO BUTTON
+
+/* MOVE NO BUTTON */
 
 function moveNoButton() {
 
     const buttonWidth =
         noButton.offsetWidth;
 
+
     const buttonHeight =
         noButton.offsetHeight;
 
 
     const maxX =
-        window.innerWidth - buttonWidth - 10;
+        window.innerWidth
+        - buttonWidth
+        - 10;
+
 
     const maxY =
-        window.innerHeight - buttonHeight - 10;
+        window.innerHeight
+        - buttonHeight
+        - 10;
 
 
     const randomX =
-        Math.max(10, Math.random() * maxX);
+        Math.max(
+            10,
+            Math.random() * maxX
+        );
+
 
     const randomY =
-        Math.max(10, Math.random() * maxY);
+        Math.max(
+            10,
+            Math.random() * maxY
+        );
 
 
     noButton.style.left =
         randomX + "px";
+
 
     noButton.style.top =
         randomY + "px";
@@ -470,104 +753,211 @@ function moveNoButton() {
 }
 
 
-// FUNNY FLOATING EMOJIS
+
+/* FLOATING EMOJIS */
 
 const funnyEmojis = [
+
     "🐶",
     "🤣",
     "🔪",
     "🐕",
     "😂"
+
 ];
 
+
+
+/* FIRST FLOATING TEXT */
+
+function createFirstFloatingText() {
+
+    const text =
+        document.createElement(
+            "div"
+        );
+
+
+    text.className =
+        "funnyEmoji textEmoji";
+
+
+    text.innerText =
+        "The moon is beautiful, isn't it? 🌙";
+
+
+    text.style.left =
+        "50%";
+
+
+    text.style.animationDuration =
+        "15s";
+
+
+    document.body.appendChild(
+        text
+    );
+
+
+    setTimeout(
+        function() {
+
+            text.remove();
+
+        },
+        16000
+    );
+
+}
+
+
+
+/* NORMAL FLOATING EMOJI */
 
 function createFunnyEmoji() {
 
     const emoji =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     emoji.className =
         "funnyEmoji";
 
+
     emoji.innerText =
         funnyEmojis[
             Math.floor(
-                Math.random() *
+                Math.random()
+                *
                 funnyEmojis.length
             )
         ];
 
 
     emoji.style.left =
-        Math.random() * 100 + "vw";
+        (10 + Math.random() * 80)
+        + "vw";
 
 
     emoji.style.animationDuration =
-        (3 + Math.random() * 3) + "s";
+        (10 + Math.random() * 5)
+        + "s";
 
 
-    document.body.appendChild(emoji);
+    document.body.appendChild(
+        emoji
+    );
 
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
-        emoji.remove();
+            emoji.remove();
 
-    }, 6000);
+        },
+        16000
+    );
 
 }
 
 
-setInterval(createFunnyEmoji, 700);
+
+/*
+    THE MOON TEXT IS FIRST
+*/
+
+createFirstFloatingText();
 
 
-// CONFETTI
+
+/*
+    EMOJIS START AFTER 1.5 SECONDS
+*/
+
+setTimeout(
+    function() {
+
+        createFunnyEmoji();
+
+
+        setInterval(
+            createFunnyEmoji,
+            1800
+        );
+
+    },
+    1500
+);
+
+
+
+/* CONFETTI */
 
 function createConfetti() {
 
     const confettiEmojis = [
+
         "🎉",
         "🤣",
         "🐶",
         "😂",
         "✨",
         "🐕"
+
     ];
 
 
-    for (let i = 0; i < 40; i++) {
+    for (
+        let i = 0;
+        i < 40;
+        i++
+    ) {
 
         const confetti =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         confetti.className =
             "confetti";
 
+
         confetti.innerText =
             confettiEmojis[
                 Math.floor(
-                    Math.random() *
+                    Math.random()
+                    *
                     confettiEmojis.length
                 )
             ];
 
 
         confetti.style.left =
-            Math.random() * 100 + "vw";
+            Math.random() * 100
+            + "vw";
 
 
         confetti.style.animationDelay =
-            Math.random() * 1.5 + "s";
+            Math.random() * 1.5
+            + "s";
 
 
-        document.body.appendChild(confetti);
+        document.body.appendChild(
+            confetti
+        );
 
 
-        setTimeout(function() {
+        setTimeout(
+            function() {
 
-            confetti.remove();
+                confetti.remove();
 
-        }, 4500);
+            },
+            4500
+        );
 
     }
 
@@ -576,4 +966,4 @@ function createConfetti() {
 </script>
 
 </body>
-          </html>
+    </html>
